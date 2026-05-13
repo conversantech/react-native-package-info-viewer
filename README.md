@@ -1,0 +1,1 @@
+# react-native-package-info-viewer

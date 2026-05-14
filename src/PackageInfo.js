@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     StyleSheet,
     Text,
@@ -14,6 +14,7 @@ import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import DeviceInfo from 'react-native-device-info';
 import Clipboard from '@react-native-clipboard/clipboard';
 import Share from 'react-native-share';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 // Helper to mask sensitive strings
 const maskString = (str) => {
@@ -81,7 +82,7 @@ export default function PackageInfo({
         loadDeviceInfo();
     }, []);
 
-    const handleShare = async () => {
+    const handleShare = useCallback(async () => {
         const info = JSON.stringify({
             app: packageJson,
             build: buildInfo,
@@ -98,9 +99,9 @@ export default function PackageInfo({
         } catch (error) {
             console.log('Share dismissed');
         }
-    };
+    }, [packageJson, buildInfo, deviceData, configValues, environmentName]);
 
-    const handleCopy = () => {
+    const handleCopy = useCallback(() => {
         const info = JSON.stringify({
             app: packageJson,
             build: buildInfo,
@@ -111,7 +112,33 @@ export default function PackageInfo({
 
         Clipboard.setString(info);
         Alert.alert('Copied!', 'Debug information copied to clipboard.');
-    };
+    }, [packageJson, buildInfo, deviceData, configValues, environmentName]);
+
+    useEffect(() => {
+        if (navigation) {
+            navigation.setOptions({
+                title: 'Package Info',
+                headerRight: () => (
+                    <View style={{ flexDirection: 'row', marginRight: 10 }}>
+                        <TouchableOpacity 
+                            onPress={handleCopy} 
+                            style={{ padding: 8 }}
+                            accessibilityLabel="Copy debug info"
+                        >
+                            <Icon name="content-copy" size={22} color={primaryColor} />
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            onPress={handleShare} 
+                            style={{ padding: 8 }}
+                            accessibilityLabel="Share debug info"
+                        >
+                            <Icon name="share" size={24} color={primaryColor} />
+                        </TouchableOpacity>
+                    </View>
+                ),
+            });
+        }
+    }, [navigation, handleCopy, handleShare, primaryColor]);
 
     const renderDependency = (name, version) => (
         <View key={name} style={styles.dependencyRow}>
@@ -145,23 +172,7 @@ export default function PackageInfo({
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor }]}>
-            <View style={[styles.header, { backgroundColor: cardBackgroundColor }]}>
-                <TouchableOpacity
-                    onPress={() => navigation && navigation.goBack()}
-                    style={styles.backButton}>
-                    <Text style={[styles.backButtonText, { color: primaryColor }]}>← Back</Text>
-                </TouchableOpacity>
-                <Text style={[styles.headerTitle, { color: textColor }]}>Package Info</Text>
-
-                <View style={{ flexDirection: 'row', marginLeft: 'auto' }}>
-                    <TouchableOpacity onPress={handleCopy} style={{ marginRight: 15 }}>
-                        <Text style={{ color: primaryColor, fontWeight: '600' }}>Copy</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleShare}>
-                        <Text style={{ color: primaryColor, fontWeight: '600' }}>Share</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
+            {/* Internal header removed as actions moved to app header */}
 
             <ScrollView style={styles.scrollView}>
                 {/* 1. App Info Section */}

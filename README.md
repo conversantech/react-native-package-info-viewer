@@ -1,16 +1,41 @@
 # React Native Package Info Viewer
 
-A robust React Native component to display application version, dependencies, build information (Git commit, branch, author), dynamic configuration values, **and Device Information**. Perfect for debug menus, QA testing, and "About App" screens.
+[![npm version](https://img.shields.io/npm/v/react-native-package-info-viewer.svg)](https://www.npmjs.com/package/react-native-package-info-viewer)
+[![license](https://img.shields.io/npm/l/react-native-package-info-viewer.svg)](https://github.com/conversantech/react-native-package-info-viewer/blob/main/LICENSE)
+
+A robust React Native component to display application version, dependencies, build information (Git commit, branch, author), dynamic configuration values, and Device Information. Perfect for debug menus, QA testing, and "About App" screens.
+
+## Table of Contents
+- [Features](#features-)
+- [Compatibility](#compatibility-)
+- [Installation](#installation-)
+- [Setup](#setup-crucial-step-)
+- [Usage](#usage-)
+- [Props](#props-)
+- [License](#license)
 
 ## Features 🚀
 - 📦 **App Info**: Displays Version, Version Code, App ID, and Name.
 - 📱 **Device Info**: Shows Model, OS Version, Battery Level, and IP Address.
-- 🏗 **Build Metadata**: Shows Git Commit Hash, Branch, Author, and Build Date (Auto-generated).
-- 🔧 **Config Viewer**: Safely displays environment variables or config keys (masks sensitive keys automatically).
-- 🧩 **Dependency List**: Lists all `dependencies` and `devDependencies` with versions.
-- 🎨 **Fully Customizable**: Change colors to match your app's theme (Light/Dark mode).
+- 🏗 **Build Metadata**: Git Commit Hash, Branch, Author, and Build Date. *(Requires Setup ⚡)*
+- 🔧 **Config Viewer**: Safely displays environment variables with automatic masking.
+- 🧩 **Dependency List**: Lists all `dependencies` and `devDependencies`.
+- 🎨 **Fully Customizable**: Change colors to match your app's theme.
 - 📤 **Share/Copy**: Quickly share debug info via WhatsApp, Slack, or Clipboard.
-- dup **Debug Button**: A handy floating/inline button to trigger the info screen.
+- 🔘 **Debug Button**: A handy pre-styled button to trigger the info screen.
+
+---
+
+## Compatibility 📱
+
+This package is designed for modern React Native applications and supports:
+
+| Requirement | Version |
+|-------------|---------|
+| **React Native** | >= 0.60.0 |
+| **React** | >= 18.0.0 |
+| **iOS** | 12.4+ |
+| **Android** | API 21+ |
 
 ---
 
@@ -25,9 +50,9 @@ yarn add react-native-package-info-viewer
 ### Peer Dependencies
 Ensure you have these installed in your project:
 ```bash
-yarn add moment react-native-skeleton-placeholder react-native-linear-gradient @react-native-community/async-storage react-native-device-info @react-native-clipboard/clipboard react-native-share
+yarn add moment react-native-skeleton-placeholder react-native-device-info @react-native-clipboard/clipboard react-native-share react-native-vector-icons
 ```
-*(Don't forget to run `cd ios && pod install` for iOS)*
+*(Don't forget to run `npx pod-install` or `cd ios && pod install` for iOS)*
 
 ---
 
@@ -77,12 +102,12 @@ const AboutScreen = ({ navigation }) => {
       buildInfo={buildInfo}
       environmentName="STAGING"
       
-      // Theme Customization (New in v0.2.0)
-      primaryColor="#FF5733"       // Brand Color
-      backgroundColor="#121212"    // Main Background (Dark Mode)
-      cardBackgroundColor="#1E1E1E" // Card Background
-      textColor="#FFFFFF"          // Main Text
-      secondaryTextColor="#AAAAAA" // Label Text
+      // Theme Customization
+      primaryColor="#007AFF"
+      backgroundColor="#f5f5f5"
+      cardBackgroundColor="#ffffff"
+      textColor="#333333"
+      secondaryTextColor="#666666"
 
       // Config/Env Variables
       configValues={{
@@ -131,6 +156,15 @@ export default function LoginScreen({ navigation }) {
 | `cardBackgroundColor`| Color | `'#ffffff'` | Background color for info cards. |
 | `textColor` | Color | `'#333333'` | Main text color. |
 | `secondaryTextColor`| Color | `'#666666'` | Secondary/Label text color. |
+
+### `DebugButton`
+
+| Prop Name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `visible` | Boolean | `true` | Controls whether the button is rendered. |
+| `onPress` | Function | `undefined` | Callback function when the button is tapped. |
+| `buttonStyle` | Style | `{}` | Custom style for the button container. |
+| `textStyle` | Style | `{}` | Custom style for the button text. |
 
 ---
 

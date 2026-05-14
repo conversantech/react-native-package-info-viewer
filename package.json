@@ -1,10 +1,14 @@
 {
-  "name": "react-native-package-info-viewer",
-  "version": "0.2.1",
+  "name": "@conversantech/react-native-package-info-viewer",
+  "version": "1.0.0",
   "description": "View App Package and Build Info",
   "main": "./lib/module/index.js",
+  "module": "./lib/module/index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "bin": {
-    "generate-build-info": "./scripts/generate-build-info.js"
+    "generate-build-info": "scripts/generate-build-info.js"
   },
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -37,7 +41,7 @@
   "scripts": {
     "example": "yarn workspace react-native-package-info-viewer-example",
     "clean": "del-cli lib",
-    "prepare": "bob build",
+    "prepare": "npx react-native-builder-bob build --target module",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest",
@@ -52,7 +56,7 @@
     "type": "git",
     "url": "git+https://github.com/conversantech/react-native-package-info-viewer.git"
   },
-  "author": "CT Developer <rohit.chauhan@conversantech.com> (https://conversantech.com)",
+  "author": "conversantech (https://conversantech.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/conversantech/react-native-package-info-viewer/issues"
@@ -67,7 +71,6 @@
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.35.0",
     "@react-native-clipboard/clipboard": "^1.16.3",
-    "@react-native-community/async-storage": "^1.12.1",
     "@react-native/babel-preset": "0.83.0",
     "@react-native/eslint-config": "0.83.0",
     "@release-it/conventional-changelog": "^10.0.1",
@@ -86,22 +89,21 @@
     "react-native": "0.81.5",
     "react-native-builder-bob": "^0.40.17",
     "react-native-device-info": "^15.0.1",
-    "react-native-linear-gradient": "^2.8.3",
     "react-native-share": "^12.2.4",
     "react-native-skeleton-placeholder": "^5.2.4",
+    "react-native-vector-icons": "^10.2.0",
     "release-it": "^19.0.4",
     "typescript": "^5.9.2"
   },
   "peerDependencies": {
-    "@react-native-clipboard/clipboard": "*",
-    "@react-native-community/async-storage": "*",
-    "moment": "*",
-    "react": "*",
-    "react-native": "*",
-    "react-native-device-info": "*",
-    "react-native-linear-gradient": "*",
-    "react-native-share": "*",
-    "react-native-skeleton-placeholder": "*"
+    "@react-native-clipboard/clipboard": ">=1.0.0",
+    "moment": ">=2.0.0",
+    "react": ">=18.0.0",
+    "react-native": ">=0.60.0",
+    "react-native-device-info": ">=10.0.0",
+    "react-native-share": ">=8.0.0",
+    "react-native-skeleton-placeholder": ">=5.0.0",
+    "react-native-vector-icons": ">=9.0.0"
   },
   "workspaces": [
     "example"

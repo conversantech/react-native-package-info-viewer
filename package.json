@@ -1,6 +1,6 @@
 {
   "name": "@conversantech/react-native-package-info-viewer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "View App Package and Build Info",
   "main": "./lib/module/index.js",
   "module": "./lib/module/index.js",

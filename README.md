@@ -1,7 +1,7 @@
 # React Native Package Info Viewer
 
-[![npm version](https://img.shields.io/npm/v/react-native-package-info-viewer.svg)](https://www.npmjs.com/package/react-native-package-info-viewer)
-[![license](https://img.shields.io/npm/l/react-native-package-info-viewer.svg)](https://github.com/conversantech/react-native-package-info-viewer/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@conversantech/react-native-package-info-viewer.svg)](https://www.npmjs.com/package/@conversantech/react-native-package-info-viewer)
+[![license](https://img.shields.io/npm/l/@conversantech/react-native-package-info-viewer.svg)](https://github.com/conversantech/react-native-package-info-viewer/blob/main/LICENSE)
 
 A robust React Native component to display application version, dependencies, build information (Git commit, branch, author), dynamic configuration values, and Device Information. Perfect for debug menus, QA testing, and "About App" screens.
 
@@ -42,9 +42,9 @@ This package is designed for modern React Native applications and supports:
 ## Installation 💿
 
 ```bash
-npm install react-native-package-info-viewer
+npm install @conversantech/react-native-package-info-viewer
 # or
-yarn add react-native-package-info-viewer
+yarn add @conversantech/react-native-package-info-viewer
 ```
 
 ### Peer Dependencies
@@ -81,7 +81,7 @@ This is the main component that displays all the data.
 
 ```javascript
 import React from 'react';
-import { PackageInfo } from 'react-native-package-info-viewer';
+import { PackageInfo } from '@conversantech/react-native-package-info-viewer';
 
 // 1. Import your package.json
 import packageJson from './package.json';
@@ -125,7 +125,7 @@ export default AboutScreen;
 A pre-styled button to easily navigate to your Info Screen.
 
 ```javascript
-import { DebugButton } from 'react-native-package-info-viewer';
+import { DebugButton } from '@conversantech/react-native-package-info-viewer';
 
 export default function LoginScreen({ navigation }) {
   return (

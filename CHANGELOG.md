@@ -1,10 +1,14 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## 1.0.2
 
-## [1.0.0] - 2026-05-14
+- Replaced license with **BSD 3-Clause License**.
+- Updated `README.md` and `package.json` to reflect BSD-3-Clause license.
+- Cleaned up `package.json` `files` array to only pack `src`, `lib`, and `scripts`, significantly reducing package size.
+- Updated dependency `react-native-builder-bob` to `^0.30.0` to resolve Node 18 build compatibility.
 
-### Added
+## 1.0.0
+
 - Initial public release of `react-native-package-info-viewer`.
 - **PackageInfo**: Main component to display app, device, and build information.
 - **DebugButton**: Customizable button for easy navigation to the info screen.
